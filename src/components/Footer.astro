@@ -1,6 +1,7 @@
 ---
 import { APP_STORE_URL } from '../consts';
 const today = new Date();
+const base = import.meta.env.BASE_URL;
 ---
 
 <footer>
@@ -8,9 +9,9 @@ const today = new Date();
 	<div class="footer-links">
 		<a href={APP_STORE_URL} target="_blank">App Store</a>
 		<span class="separator">|</span>
-		<a href="/releases">Release Notes</a>
+		<a href={`${base}releases`}>Release Notes</a>
 		<span class="separator">|</span>
-		<a href="/blog">Blog</a>
+		<a href={`${base}blog`}>Blog</a>
 	</div>
 </footer>
 <style>

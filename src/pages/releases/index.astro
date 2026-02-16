@@ -6,6 +6,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
 
+const base = import.meta.env.BASE_URL;
 const releases = (await getCollection('releases')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
@@ -82,7 +83,7 @@ const releases = (await getCollection('releases')).sort(
 				{
 					releases.map((release) => (
 						<li>
-							<a href={`/releases/${release.id}/`}>
+							<a href={`${base}releases/${release.id}/`}>
 								<div class="release-header">
 									<span class="version-badge">v{release.data.version}</span>
 									<h3 class="release-title">{release.data.title}</h3>

@@ -6,6 +6,8 @@ import { SITE_DESCRIPTION, SITE_TITLE, APP_STORE_URL } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
+const base = import.meta.env.BASE_URL;
+
 const latestPosts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
@@ -228,13 +230,13 @@ const latestRelease = (await getCollection('releases'))
 				<section class="section">
 					<h2 class="section-title">Latest Release</h2>
 					<div class="latest-release">
-						<a href={`/releases/${latestRelease.id}/`}>
+						<a href={`${base}releases/${latestRelease.id}/`}>
 							<span class="version-badge">v{latestRelease.data.version}</span>
 							<h3>{latestRelease.data.title}</h3>
 							<p>{latestRelease.data.description}</p>
 						</a>
 					</div>
-					<a href="/releases" class="view-all">All releases &rarr;</a>
+					<a href={`${base}releases`} class="view-all">All releases &rarr;</a>
 				</section>
 			)}
 
@@ -244,7 +246,7 @@ const latestRelease = (await getCollection('releases'))
 					<ul class="post-list">
 						{latestPosts.map((post) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>
+								<a href={`${base}blog/${post.id}/`}>
 									<h4>{post.data.title}</h4>
 									<span class="date"><FormattedDate date={post.data.pubDate} /></span>
 									<p class="description">{post.data.description}</p>
@@ -252,7 +254,7 @@ const latestRelease = (await getCollection('releases'))
 							</li>
 						))}
 					</ul>
-					<a href="/blog" class="view-all">All posts &rarr;</a>
+					<a href={`${base}blog`} class="view-all">All posts &rarr;</a>
 				</section>
 			)}
 		</main>
