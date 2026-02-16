@@ -8,9 +8,11 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 const base = import.meta.env.BASE_URL;
 
-const latestPosts = (await getCollection('blog'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3);
+const allPosts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const featuredPost = allPosts.find((p) => p.id === 'ideas-born-outside-desk');
+const latestPosts = allPosts.slice(0, 3);
 
 const latestRelease = (await getCollection('releases'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
@@ -54,6 +56,46 @@ const latestRelease = (await getCollection('releases'))
 			.cta-button:hover {
 				background: var(--accent-dark);
 				color: white;
+			}
+
+			.featured-post {
+				text-align: center;
+				padding: 0 1em 2em;
+			}
+			.featured-post a {
+				display: block;
+				max-width: 540px;
+				margin: 0 auto;
+				background: linear-gradient(135deg, rgba(0,122,255,0.06), rgba(52,199,89,0.06));
+				border: 1px solid rgba(0,122,255,0.15);
+				border-radius: 12px;
+				padding: 1.5em 2em;
+				text-decoration: none;
+				color: inherit;
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			.featured-post a:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 20px rgba(var(--gray), 20%);
+			}
+			.featured-post .featured-label {
+				display: inline-block;
+				font-size: 0.75em;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: var(--accent);
+				margin-bottom: 0.5em;
+			}
+			.featured-post h3 {
+				font-size: 1.15em;
+				margin: 0 0 0.4em;
+			}
+			.featured-post p {
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+				line-height: 1.5;
+				margin: 0;
 			}
 
 			.features {
@@ -192,6 +234,16 @@ const latestRelease = (await getCollection('releases'))
 					Download on the App Store
 				</a>
 			</section>
+
+			{featuredPost && (
+				<section class="featured-post">
+					<a href={`${base}blog/${featuredPost.id}/`}>
+						<span class="featured-label">Featured</span>
+						<h3>{featuredPost.data.title}</h3>
+						<p>{featuredPost.data.description}</p>
+					</a>
+				</section>
+			)}
 
 			<section class="features">
 				<div class="feature-card">

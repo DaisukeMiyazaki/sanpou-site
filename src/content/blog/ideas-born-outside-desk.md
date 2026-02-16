@@ -1,6 +1,6 @@
 ---
 title: "Why Your Best Ideas Happen Away from the Desk"
-description: "The hypothesis behind Sanpou: creative thinking doesn't happen at your computer — it happens when you step away from it."
+description: "The hypothesis behind Sanpou: creative thinking doesn't happen at your desk — it happens when you step away from it."
 pubDate: "2025-09-16"
 ---
 
