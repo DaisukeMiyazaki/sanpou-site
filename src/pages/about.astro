@@ -1,0 +1,80 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, APP_STORE_URL } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About | ${SITE_TITLE}`} description="About Sanpou and the person behind it." />
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 3em 1em;
+			}
+			.about-section {
+				margin-bottom: 2em;
+			}
+			.about-section h2 {
+				font-size: 1.5em;
+				margin-bottom: 0.5em;
+			}
+			.about-section p {
+				color: rgb(var(--gray-dark));
+				line-height: 1.8;
+			}
+			.cta {
+				display: inline-block;
+				background: var(--accent);
+				color: white;
+				padding: 0.6em 1.5em;
+				border-radius: 10px;
+				text-decoration: none;
+				font-weight: 600;
+				margin-top: 1em;
+			}
+			.cta:hover {
+				background: var(--accent-dark);
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About Sanpou</h1>
+
+			<div class="about-section">
+				<h2>The App</h2>
+				<p>
+					Sanpou is a walking companion app for iOS. It lets you capture voice memos on the go,
+					tracks your steps, and visualizes everything on a map. The goal is simple: make it
+					effortless to record your thoughts while walking, so you never lose a good idea.
+				</p>
+			</div>
+
+			<div class="about-section">
+				<h2>The Developer</h2>
+				<p>
+					Sanpou is built and maintained by a solo developer based in Japan. Every feature is
+					crafted with care, and every piece of user feedback is read and considered. This app
+					is a labor of love — built for people who think best on their feet.
+				</p>
+			</div>
+
+			<div class="about-section">
+				<h2>Get in Touch</h2>
+				<p>
+					Have questions, ideas, or just want to say hi? Use the feedback form built into the
+					app, or reach out through the App Store. Your input directly shapes what gets built next.
+				</p>
+				<a href={APP_STORE_URL} class="cta" target="_blank">Download Sanpou</a>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,261 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, APP_STORE_URL } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const latestPosts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const latestRelease = (await getCollection('releases'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				text-align: center;
+				padding: 4em 1em 3em;
+			}
+			.hero h1 {
+				font-size: 3em;
+				margin-bottom: 0.2em;
+				background: linear-gradient(135deg, var(--accent), #34C759);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.hero .tagline {
+				font-size: 1.2em;
+				color: rgb(var(--gray));
+				max-width: 540px;
+				margin: 0 auto 2em;
+				line-height: 1.6;
+			}
+			.cta-button {
+				display: inline-block;
+				background: var(--accent);
+				color: white;
+				padding: 0.8em 2em;
+				border-radius: 12px;
+				text-decoration: none;
+				font-weight: 700;
+				font-size: 1.1em;
+				transition: background 0.2s ease;
+			}
+			.cta-button:hover {
+				background: var(--accent-dark);
+				color: white;
+			}
+
+			.features {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2em;
+				padding: 2em 0 3em;
+			}
+			.feature-card {
+				background: white;
+				border-radius: 12px;
+				padding: 1.5em;
+				box-shadow: 0 2px 12px rgba(var(--gray), 15%);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			.feature-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 20px rgba(var(--gray), 25%);
+			}
+			.feature-icon {
+				font-size: 2em;
+				margin-bottom: 0.3em;
+			}
+			.feature-card h3 {
+				font-size: 1.2em;
+				margin-bottom: 0.3em;
+			}
+			.feature-card p {
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+				line-height: 1.6;
+				margin: 0;
+			}
+
+			.section {
+				padding: 2em 0;
+			}
+			.section-title {
+				font-size: 1.8em;
+				margin-bottom: 1em;
+			}
+
+			.latest-release {
+				background: white;
+				border-radius: 12px;
+				padding: 1.5em 2em;
+				box-shadow: 0 2px 12px rgba(var(--gray), 15%);
+				margin-bottom: 2em;
+			}
+			.latest-release .version-badge {
+				display: inline-block;
+				background: var(--accent);
+				color: white;
+				padding: 0.2em 0.7em;
+				border-radius: 6px;
+				font-size: 0.8em;
+				font-weight: 700;
+				margin-bottom: 0.5em;
+			}
+			.latest-release h3 {
+				margin-bottom: 0.3em;
+			}
+			.latest-release p {
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+				margin: 0;
+			}
+			.latest-release a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.post-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.post-list li {
+				padding: 1em 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.post-list li:last-child {
+				border-bottom: none;
+			}
+			.post-list a {
+				text-decoration: none;
+				color: inherit;
+			}
+			.post-list h4 {
+				margin: 0 0 0.2em;
+				font-size: 1.1em;
+			}
+			.post-list .date {
+				color: rgb(var(--gray));
+				font-size: 0.8em;
+			}
+			.post-list .description {
+				color: rgb(var(--gray));
+				font-size: 0.85em;
+				margin: 0.3em 0 0;
+			}
+			.post-list a:hover h4 {
+				color: var(--accent);
+			}
+
+			.view-all {
+				display: inline-block;
+				margin-top: 1em;
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+			}
+			.view-all:hover {
+				text-decoration: underline;
+			}
+
+			@media (max-width: 720px) {
+				.hero h1 {
+					font-size: 2.2em;
+				}
+				.hero .tagline {
+					font-size: 1em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>Sanpou</h1>
+				<p class="tagline">
+					Turn your daily walks into a personal journal. Voice memos, step tracking, and map visualization — all in one app.
+				</p>
+				<a href={APP_STORE_URL} class="cta-button" target="_blank">
+					Download on the App Store
+				</a>
+			</section>
+
+			<section class="features">
+				<div class="feature-card">
+					<div class="feature-icon">🎙</div>
+					<h3>Voice Memos</h3>
+					<p>Record thoughts on the go with speech-to-text. Just tap and talk — your voice becomes a memo instantly.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">🗺</div>
+					<h3>Map View</h3>
+					<p>See all your memos pinned on a map. Filter by time, tap pins for details, and discover patterns in where you go.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">👟</div>
+					<h3>Step Tracking</h3>
+					<p>Your daily steps are recorded automatically via HealthKit. Every memo captures your walking context.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">📁</div>
+					<h3>Markdown Export</h3>
+					<p>Export your memos as Markdown files. Integrate seamlessly with Obsidian or any note-taking app.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">🏠</div>
+					<h3>Home / Away</h3>
+					<p>Set your home spot and see the ratio of memos recorded at home vs. out and about.</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">⌚</div>
+					<h3>Apple Watch</h3>
+					<p>Quick memo recording right from your wrist. Perfect for capturing ideas during a walk.</p>
+				</div>
+			</section>
+
+			{latestRelease && (
+				<section class="section">
+					<h2 class="section-title">Latest Release</h2>
+					<div class="latest-release">
+						<a href={`/releases/${latestRelease.id}/`}>
+							<span class="version-badge">v{latestRelease.data.version}</span>
+							<h3>{latestRelease.data.title}</h3>
+							<p>{latestRelease.data.description}</p>
+						</a>
+					</div>
+					<a href="/releases" class="view-all">All releases &rarr;</a>
+				</section>
+			)}
+
+			{latestPosts.length > 0 && (
+				<section class="section">
+					<h2 class="section-title">From the Blog</h2>
+					<ul class="post-list">
+						{latestPosts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									<h4>{post.data.title}</h4>
+									<span class="date"><FormattedDate date={post.data.pubDate} /></span>
+									<p class="description">{post.data.description}</p>
+								</a>
+							</li>
+						))}
+					</ul>
+					<a href="/blog" class="view-all">All posts &rarr;</a>
+				</section>
+			)}
+		</main>
+		<Footer />
+	</body>
+</html>

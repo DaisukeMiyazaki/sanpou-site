@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import ReleasePost from '../../layouts/ReleasePost.astro';
+
+export async function getStaticPaths() {
+	const releases = await getCollection('releases');
+	return releases.map((release) => ({
+		params: { slug: release.id },
+		props: release,
+	}));
+}
+type Props = CollectionEntry<'releases'>;
+
+const release = Astro.props;
+const { Content } = await render(release);
+---
+
+<ReleasePost {...release.data}>
+	<Content />
+</ReleasePost>
