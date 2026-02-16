@@ -28,7 +28,7 @@ Sanpou is an iOS app that combines voice memos, step tracking, and map visualiza
 
 ## Get Started
 
-Sanpou is available on the [App Store](https://apps.apple.com/app/sanpou/id6740006065). It's free, lightweight, and respects your privacy — no accounts, no cloud sync, everything stays on your device.
+Sanpou is available on the [App Store](https://apps.apple.com/us/app/sanpou/id6749672561). It's free, lightweight, and respects your privacy — no accounts, no cloud sync, everything stays on your device.
 
 We'd love to hear what you think. Use the built-in feedback form in the app, or reach out anytime.
 
