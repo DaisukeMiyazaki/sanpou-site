@@ -23,4 +23,14 @@ const releases = defineCollection({
 	}),
 });
 
-export const collections = { blog, releases };
+const wiki = defineCollection({
+	loader: glob({ base: './src/content/wiki', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		firstAddedVersion: z.string(),
+		lastUpdated: z.coerce.date(),
+	}),
+});
+
+export const collections = { blog, releases, wiki };

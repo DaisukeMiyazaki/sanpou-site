@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import WikiPage from '../../layouts/WikiPage.astro';
+
+export async function getStaticPaths() {
+	const features = await getCollection('wiki');
+	return features.map((feature) => ({
+		params: { slug: feature.id },
+		props: feature,
+	}));
+}
+type Props = CollectionEntry<'wiki'>;
+
+const feature = Astro.props;
+const { Content } = await render(feature);
+---
+
+<WikiPage {...feature.data}>
+	<Content />
+</WikiPage>
