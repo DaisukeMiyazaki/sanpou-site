@@ -27,6 +27,23 @@ const { title, description, image = FallbackImage, type = 'website', publishedTi
 	gtag('js', new Date());
 	gtag('config', 'G-LN0FF30Q70');
 </script>
+<script is:inline>
+	document.addEventListener('click', function (e) {
+		var link = e.target && e.target.closest && e.target.closest('a[data-app-store-link]');
+		if (!link) return;
+		if (typeof gtag !== 'function') return;
+		var linkLocation = link.getAttribute('data-app-store-link') || '';
+		var linkUrl = link.getAttribute('href') || '';
+		var ctMatch = linkUrl.match(/[?&]ct=([^&]+)/);
+		var ct = ctMatch ? decodeURIComponent(ctMatch[1]) : '';
+		gtag('event', 'app_store_click', {
+			link_location: linkLocation,
+			ct: ct,
+			link_url: linkUrl,
+			transport_type: 'beacon'
+		});
+	});
+</script>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />

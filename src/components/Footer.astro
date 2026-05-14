@@ -1,5 +1,5 @@
 ---
-import { APP_STORE_URL } from '../consts';
+import { buildAppStoreUrl } from '../consts';
 const today = new Date();
 const base = import.meta.env.BASE_URL;
 ---
@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL;
 <footer>
 	<p>&copy; {today.getFullYear()} Sanpou. Built with care by a solo developer.</p>
 	<div class="footer-links">
-		<a href={APP_STORE_URL} target="_blank">App Store</a>
+		<a href={buildAppStoreUrl('site-footer')} target="_blank" rel="noopener noreferrer" data-app-store-link="footer">App Store</a>
 		<span class="separator">|</span>
 		<a href={`${base}releases`}>Release Notes</a>
 		<span class="separator">|</span>

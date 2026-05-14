@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, APP_STORE_URL } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, buildAppStoreUrl } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
@@ -230,7 +230,7 @@ const latestRelease = (await getCollection('releases'))
 				<p class="tagline">
 					Turn your daily walks into a personal journal. Voice memos, step tracking, and map visualization — all in one app.
 				</p>
-				<a href={APP_STORE_URL} class="cta-button" target="_blank">
+				<a href={buildAppStoreUrl('site-hero')} class="cta-button" target="_blank" rel="noopener noreferrer" data-app-store-link="hero">
 					Download on the App Store
 				</a>
 			</section>

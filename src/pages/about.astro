@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE, APP_STORE_URL } from '../consts';
+import { SITE_TITLE, buildAppStoreUrl } from '../consts';
 ---
 
 <!doctype html>
@@ -72,7 +72,7 @@ import { SITE_TITLE, APP_STORE_URL } from '../consts';
 					Have questions, ideas, or just want to say hi? Use the feedback form built into the
 					app, or reach out through the App Store. Your input directly shapes what gets built next.
 				</p>
-				<a href={APP_STORE_URL} class="cta" target="_blank">Download Sanpou</a>
+				<a href={buildAppStoreUrl('site-about')} class="cta" target="_blank" rel="noopener noreferrer" data-app-store-link="about">Download Sanpou</a>
 			</div>
 		</main>
 		<Footer />
