@@ -155,14 +155,6 @@ hr.dotted {
 	opacity: 0.6;
 }
 
-/* metadata 用ユーティリティ — 等幅・霞墨。歩数や座標、日時に使う */
-.meta {
-	font-family: var(--font-mono);
-	font-size: 12px;
-	color: var(--ink-3);
-	line-height: 1.4;
-}
-
 @media (max-width: 720px) {
 	body {
 		font-size: 17px;
