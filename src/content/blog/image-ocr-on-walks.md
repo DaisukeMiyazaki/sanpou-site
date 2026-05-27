@@ -12,23 +12,17 @@ Later, back at your desk, you open the memo. The photo is there. The words are t
 
 This shows up everywhere on a walk: handwritten cafe menus, train schedules, building plaques, a printout taped to a door. Photographing them is fast. Doing anything with what they actually *say* is slow. So most of those photos just sit in the library, half-remembered, never revisited.
 
+The use case that actually pushed me to build this, though, was reading. I photograph paragraphs from books all the time — a sentence I want to keep, a line I'll want to come back to. Same trap as the noticeboard: the words are right there in my library, and also somehow not.
+
 The fix has been around for years — get a computer to read the image — but the moment usually never lines up. By the time you'd remember to run something through a separate OCR app, the walk is over and so is the impulse.
 
 ## What Sanpou Does Now
 
-Starting with v2.5.0, the reading happens inside the app, on the same photo you already took.
-
-You take the picture the way you always have, as part of writing a memo. When you want the text, you tap the **Read text** button on that photo. It works two ways: while you're still composing the memo, or later from the photo carousel of a saved one. Either way, the flow stays inside Sanpou — no exporting the image, no jumping to another app.
-
-The app asks you two quick things if it needs to: which language, and (for Japanese) which orientation. Then it gives you an editable text field. OCR is good but not perfect, and the things you photograph on walks — weathered signs, handwritten chalkboards, low light — are exactly the cases where it slips. The editable field is the point. You fix what's wrong, then drop the text into the memo body.
+Starting with v2.5.0, the reading happens inside the app, on the same photo you already took. You tap a button, confirm a couple of things, edit the result if it needs fixing, and the text lands in your memo body. The mechanics live in [the wiki page](/sanpou-site/wiki/image-ocr/).
 
 What lands in your memo is real text. Searchable. Exportable. Pasteable into Obsidian or anywhere else your notes eventually go.
 
-## A Note on Languages
-
-Sanpou transcribes Japanese, English, and Dutch. Vertical Japanese is handled too, which matters more than it sounds — a lot of signage in Japan still runs top-to-bottom, and most OCR tools quietly refuse it.
-
-The language picker follows your app's language setup. If you've added Dutch, Dutch is there. We didn't want Dutch-reading users to be silently dropped into English just because English is the default everywhere else.
+Japanese, English, and Dutch are supported, and vertical Japanese is handled too.
 
 ## The Point Isn't OCR
 
