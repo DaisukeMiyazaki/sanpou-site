@@ -2,7 +2,7 @@
 title: "Memo Detail"
 description: "Open a memo to see the full transcript, photos, ambient audio, and a sticky audio player that stays accessible while you scroll."
 firstAddedVersion: "1.8.0"
-lastUpdated: "2026-05-14"
+lastUpdated: "2026-05-27"
 ---
 
 Tap any memo in the list to open its detail view. You'll see the full transcript with surrounding memos truncated for context, attached photos and videos, ambient audio if it was captured, and metadata like steps and weather.
@@ -14,3 +14,5 @@ If the memo has audio (voice or conversation recording), the audio player sticks
 ## Media Carousel
 
 Tap a thumbnail to open a full-screen media carousel. Swipe between photos and videos, long-press to share.
+
+When the current carousel page is a photo, an **OCR** button sits in the corner so you can pull text out of it on the spot — useful when you didn't think to OCR a sign at the time but want the text now. See [Image OCR](/sanpou-site/wiki/image-ocr/) for what happens next.

@@ -1,0 +1,35 @@
+---
+title: "Image OCR"
+description: "Pull text out of a photo you've attached to a memo — signs, menus, posters — and drop the recognized text right where your cursor is."
+firstAddedVersion: "2.5.0"
+lastUpdated: "2026-05-27"
+---
+
+Not every walk thought arrives as a sentence. Sometimes it's a sign you photographed, a handwritten menu board, or a poster you'd like to remember. Image OCR turns the text in those photos into something you can edit, search, and export with the rest of your memo.
+
+## How to Trigger OCR
+
+OCR runs on photos that are **already attached** to a memo — it doesn't launch the camera on its own.
+
+- **While composing a memo**: tap a photo thumbnail to open it full-screen, then tap the **OCR** button overlaid on the preview.
+- **From a saved memo**: open the [memo detail view](/sanpou-site/wiki/memo-detail/), find the photo in the carousel, and tap the **OCR** button.
+
+Both paths open the OCR confirmation sheet, where you pick language and orientation, run recognition, then edit before inserting.
+
+## Languages
+
+OCR follows your app [language settings](/sanpou-site/wiki/languages/). The language picker only shows the languages you've actually enabled — your primary plus the optional secondary — so if you only use Japanese, you won't see an English toggle every time. Supported recognition languages are **Japanese**, **English**, and **Dutch**.
+
+## Vertical Japanese (Tategaki)
+
+Japanese is the only language with a vertical-writing tradition, so the horizontal / vertical orientation toggle only appears when Japanese is the current OCR language. Horizontal text goes through the Vision framework; vertical Japanese routes through VisionKit's Live Text engine to handle tategaki correctly.
+
+## Editing Before Insertion
+
+Recognition results aren't perfect — OCR often picks up stray punctuation or misreads kerned characters. The confirmation sheet drops the recognized text into an editable field first so you can tidy it up before it touches your memo. When you hit **Insert**, the cleaned text lands at your cursor position (or appends if the editor wasn't focused).
+
+## Related
+
+- [Photo & Video Capture](/sanpou-site/wiki/photo-video-capture/) — how photos get attached in the first place
+- [Memo Detail](/sanpou-site/wiki/memo-detail/) — OCR is also reachable from saved memos
+- [Languages](/sanpou-site/wiki/languages/) — primary / secondary language setup
