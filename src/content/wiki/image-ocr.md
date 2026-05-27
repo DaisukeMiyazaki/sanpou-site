@@ -1,6 +1,6 @@
 ---
 title: "Image OCR"
-description: "Pull text out of a photo you've attached to a memo — signs, menus, posters — and drop the recognized text right where your cursor is."
+description: "Pull text out of a photo you've attached to a memo — signs, menus, posters — and drop the recognized text into the memo body."
 firstAddedVersion: "2.5.0"
 lastUpdated: "2026-05-27"
 ---
@@ -26,7 +26,7 @@ Japanese is the only language with a vertical-writing tradition, so the horizont
 
 ## Editing Before Insertion
 
-Recognition results aren't perfect — OCR often picks up stray punctuation or misreads kerned characters. The confirmation sheet drops the recognized text into an editable field first so you can tidy it up before it touches your memo. When you hit **Insert**, the cleaned text lands at your cursor position (or appends if the editor wasn't focused).
+Recognition results aren't perfect — OCR often picks up stray punctuation or misreads kerned characters. The confirmation sheet drops the recognized text into an editable field first so you can tidy it up before it touches your memo. When you hit **Insert**, the cleaned text lands at your cursor position if you're composing a memo, or is appended to the body when you OCR from a saved memo.
 
 ## Related
 
