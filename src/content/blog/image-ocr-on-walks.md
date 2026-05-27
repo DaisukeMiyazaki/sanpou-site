@@ -1,6 +1,6 @@
 ---
 title: "When the Words You Want Are Stuck in a Photo"
-description: "Sanpou v2.5.0 adds image OCR so the text on signs, menus, and noticeboards becomes part of your memo — not just a picture of itself."
+description: "Sanpou v2.5.0 adds photo transcription so the text on signs, menus, and noticeboards becomes part of your memo — not just a picture of itself."
 pubDate: "2026-05-27"
 ---
 
@@ -18,7 +18,7 @@ The fix has been around for years — get a computer to read the image — but t
 
 Starting with v2.5.0, the reading happens inside the app, on the same photo you already took.
 
-You take the picture the way you always have, as part of writing a memo. When you want the text, you tap the OCR button on that photo. It works two ways: while you're still composing the memo, or later from the photo carousel of a saved one. Either way, the flow stays inside Sanpou — no exporting the image, no jumping to another app.
+You take the picture the way you always have, as part of writing a memo. When you want the text, you tap the **Read text** button on that photo. It works two ways: while you're still composing the memo, or later from the photo carousel of a saved one. Either way, the flow stays inside Sanpou — no exporting the image, no jumping to another app.
 
 The app asks you two quick things if it needs to: which language, and (for Japanese) which orientation. Then it gives you an editable text field. OCR is good but not perfect, and the things you photograph on walks — weathered signs, handwritten chalkboards, low light — are exactly the cases where it slips. The editable field is the point. You fix what's wrong, then drop the text into the memo body.
 
@@ -26,7 +26,7 @@ What lands in your memo is real text. Searchable. Exportable. Pasteable into Obs
 
 ## A Note on Languages
 
-Sanpou speaks Japanese, English, and Dutch for OCR. Vertical Japanese is handled too, which matters more than it sounds — a lot of signage in Japan still runs top-to-bottom, and most OCR tools quietly refuse it.
+Sanpou transcribes Japanese, English, and Dutch. Vertical Japanese is handled too, which matters more than it sounds — a lot of signage in Japan still runs top-to-bottom, and most OCR tools quietly refuse it.
 
 The language picker follows your app's language setup. If you've added Dutch, Dutch is there. We didn't want Dutch-reading users to be silently dropped into English just because English is the default everywhere else.
 
@@ -36,6 +36,6 @@ It would be easy to frame this as "Sanpou now has OCR" and leave it at that. But
 
 That gap is where memos go to die. You photograph the thing, you mean to come back to it, you never do — and the moment is gone the same way an unrecorded idea is gone the second you sit down.
 
-Sanpou exists to shorten that distance. Voice memos closed one version of the gap; image OCR closes another. The thing you noticed on the walk is now something you can actually use.
+Sanpou exists to shorten that distance. Voice memos closed one version of the gap; photo transcription closes another. The thing you noticed on the walk is now something you can actually use.
 
 Go for a walk. Photograph the words. Keep them.

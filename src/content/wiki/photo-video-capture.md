@@ -15,4 +15,4 @@ In the memo detail view, tap any thumbnail to open a full-screen media carousel.
 
 ## Extracting Text from a Photo
 
-Tap an attached photo to open it full-screen and you'll find an **OCR** button on the preview. Use it to pull text out of a sign, menu, or poster you photographed — see [Image OCR](/sanpou-site/wiki/image-ocr/) for the full flow.
+Tap an attached photo to open it full-screen and you'll find a **Read text** button on the preview. Use it to pull text out of a sign, menu, or poster you photographed — see [Photo Transcription](/sanpou-site/wiki/image-ocr/) for the full flow.
