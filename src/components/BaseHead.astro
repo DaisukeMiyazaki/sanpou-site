@@ -51,7 +51,7 @@ const { title, description, image = FallbackImage, type = 'website', publishedTi
 <meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
-<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
 <link
 	rel="alternate"
 	type="application/rss+xml"
