@@ -22,13 +22,13 @@ Photo transcription follows your app [language settings](/sanpou-site/wiki/langu
 
 ## Vertical Japanese (Tategaki)
 
-Japanese is the only language with a vertical-writing tradition, so the horizontal / vertical orientation toggle only appears when Japanese is the current transcription language. Horizontal text goes through the Vision framework; vertical Japanese routes through VisionKit's Live Text engine to handle tategaki correctly.
+Japanese is the only supported language with a vertical-writing tradition. When the transcription language is Japanese, an orientation toggle appears so you can choose horizontal or vertical (tategaki) before running recognition.
 
 ## Editing Before Insertion
 
-Recognition results aren't perfect — they often pick up stray punctuation or misread kerned characters. The confirmation sheet drops the read text into an editable field first so you can tidy it up before it touches your memo. When you hit **Insert**, the cleaned text lands at your cursor position if you're composing a memo, or is appended to the body when you transcribe from a saved memo.
+The read text appears in an editable field on the confirmation sheet. Fix anything that came out wrong, then tap **Insert** to drop it into the memo body.
 
-## Related
+## You might also be interested
 
 - [Photo & Video Capture](/sanpou-site/wiki/photo-video-capture/) — how photos get attached in the first place
 - [Memo Detail](/sanpou-site/wiki/memo-detail/) — OCR is also reachable from saved memos
