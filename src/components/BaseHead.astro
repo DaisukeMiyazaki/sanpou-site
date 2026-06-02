@@ -4,7 +4,7 @@
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE, APP_STORE_ID } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, APP_STORE_ID, APP_STORE_URL } from '../consts';
 
 interface Props {
 	title: string;
@@ -17,6 +17,32 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = FallbackImage, type = 'website', publishedTime } = Astro.props;
+
+// Emit site/app structured data on the home page only, so wiki/blog/release
+// pages don't each claim to be the application itself.
+const isHome = Astro.url.pathname === import.meta.env.BASE_URL;
+const siteURL = new URL(import.meta.env.BASE_URL, Astro.site).toString();
+const structuredData = isHome
+	? [
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebSite',
+				name: SITE_TITLE,
+				url: siteURL,
+				description: SITE_DESCRIPTION,
+			},
+			{
+				'@context': 'https://schema.org',
+				'@type': 'SoftwareApplication',
+				name: SITE_TITLE,
+				description: SITE_DESCRIPTION,
+				applicationCategory: 'LifestyleApplication',
+				operatingSystem: 'iOS',
+				url: siteURL,
+				downloadUrl: APP_STORE_URL,
+			},
+		]
+	: [];
 ---
 
 <!-- Google Analytics -->
@@ -86,3 +112,10 @@ const { title, description, image = FallbackImage, type = 'website', publishedTi
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Structured Data (JSON-LD) -->
+{
+	structuredData.map((schema) => (
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+	))
+}
