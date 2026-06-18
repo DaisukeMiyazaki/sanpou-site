@@ -21,4 +21,4 @@ Attached photos and videos are copied alongside the markdown and embedded using 
 
 ## Frontmatter
 
-The frontmatter includes `created_at`, `steps`, `location`, and `leaflet_coordinates` by default. You can add your own keys — see [Frontmatter Customization](/sanpou-site/wiki/frontmatter-customization/).
+The frontmatter includes `created_at`, `steps`, `location`, and `leaflet_coordinates` by default. You can add your own keys — see [Frontmatter Customization](/wiki/frontmatter-customization/).
