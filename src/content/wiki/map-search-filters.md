@@ -17,4 +17,4 @@ Limit the map to memos from a particular time window. Last week, last month, las
 
 ## Weather Category
 
-Show only sunny-day memos, only rainy ones, or only the foggy mornings. Pairs well with [Auto Weather Tagging](/sanpou-site/wiki/weather-tagging/).
+Show only sunny-day memos, only rainy ones, or only the foggy mornings. Pairs well with [Auto Weather Tagging](/wiki/weather-tagging/).

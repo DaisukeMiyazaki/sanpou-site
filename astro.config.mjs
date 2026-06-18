@@ -6,7 +6,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://mdaisuke.net',
-	base: '/sanpou-site/',
+	site: 'https://sanpou.mdaisuke.net',
 	integrations: [mdx(), sitemap()],
 });
