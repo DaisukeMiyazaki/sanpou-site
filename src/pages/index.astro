@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, buildAppStoreUrl } from '../consts';
+import { APP_STORE_URL, SITE_DESCRIPTION, SITE_TITLE_HOME, buildAppStoreUrl } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
@@ -16,12 +16,31 @@ const latestPosts = allPosts.slice(0, 3);
 
 const latestRelease = (await getCollection('releases'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
+
+// schema.org MobileApplication — declares, machine-readably, that Sanpou is an
+// iOS app (not the Japanese business-ethics concept 三方よし that the name
+// otherwise collides with). Surfaced to crawlers and LLM-based analyzers.
+const appStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'MobileApplication',
+	name: 'Sanpou',
+	applicationCategory: 'LifestyleApplication',
+	operatingSystem: 'iOS',
+	description: SITE_DESCRIPTION,
+	url: APP_STORE_URL,
+	installUrl: APP_STORE_URL,
+	offers: {
+		'@type': 'Offer',
+		price: '0',
+		priceCurrency: 'USD',
+	},
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE_HOME} description={SITE_DESCRIPTION} structuredData={appStructuredData} />
 		<style>
 			.hero {
 				text-align: center;
