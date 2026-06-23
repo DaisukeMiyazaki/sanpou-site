@@ -4,16 +4,45 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'wiki'>['data'];
 
 const base = import.meta.env.BASE_URL;
 const { title, description, firstAddedVersion, lastUpdated } = Astro.props;
+
+const pageURL = new URL(Astro.url.pathname, Astro.site).href;
+const homeURL = new URL(base, Astro.site).href;
+const wikiURL = new URL(`${base}wiki`, Astro.site).href;
+const publisher = { '@type': 'Organization', name: SITE_TITLE, url: homeURL };
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'TechArticle',
+			headline: title,
+			description,
+			dateModified: lastUpdated.toISOString(),
+			author: publisher,
+			publisher,
+			mainEntityOfPage: pageURL,
+		},
+		{
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: homeURL },
+				{ '@type': 'ListItem', position: 2, name: 'Features', item: wikiURL },
+				{ '@type': 'ListItem', position: 3, name: title, item: pageURL },
+			],
+		},
+	],
+};
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={`${title} | Sanpou`} description={description} />
+		<BaseHead title={`${title} | Sanpou`} description={description} structuredData={structuredData} />
 		<style>
 			main {
 				width: calc(100% - 2em);
