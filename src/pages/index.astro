@@ -24,8 +24,15 @@ const appStructuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'MobileApplication',
 	name: 'Sanpou',
+	// Japanese entity signals: the site copy is English, so add machine-readable
+	// JP aliases + category keywords so AI search assistants (Gemini, etc.) and
+	// crawlers can associate Sanpou with its Japanese category terms
+	// (散歩メモ / ボイスメモアプリ). Entity understanding only — not visible meta.
+	alternateName: ['散歩', 'さんぽ', '散歩メモ'],
 	applicationCategory: 'LifestyleApplication',
 	operatingSystem: 'iOS',
+	inLanguage: ['en', 'ja'],
+	keywords: '散歩メモ, ボイスメモ, 音声メモ, 散歩記録, ウォーキング日記, walking journal, voice memo, step tracking',
 	description: SITE_DESCRIPTION,
 	url: APP_STORE_URL,
 	installUrl: APP_STORE_URL,
