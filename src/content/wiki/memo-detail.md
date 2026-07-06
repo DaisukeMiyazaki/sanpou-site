@@ -2,7 +2,7 @@
 title: "Memo Detail"
 description: "Open a memo to see the full transcript, photos, ambient audio, and a sticky audio player that stays accessible while you scroll."
 firstAddedVersion: "1.8.0"
-lastUpdated: "2026-05-28"
+lastUpdated: "2026-07-07"
 ---
 
 Tap any memo in the list to open its detail view. You'll see the full transcript with surrounding memos truncated for context, attached photos and videos, ambient audio if it was captured, and metadata like steps and weather.
@@ -14,3 +14,5 @@ If the memo has audio (voice or conversation recording), the audio player sticks
 ## Media Carousel
 
 Tap a thumbnail to open a full-screen media carousel. Swipe between photos and videos, long-press to share. Pinch to zoom into a photo and drag to pan around — the swipe gesture takes over again once you zoom back out.
+
+When the current page is a photo, a "Read text" button lets you pull the text out of it on the spot — useful when you didn't think to transcribe a sign at the time but want the words now. See [Text from Photos](/wiki/text-from-photos/) for what happens next.
