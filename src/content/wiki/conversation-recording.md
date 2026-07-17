@@ -1,7 +1,7 @@
 ---
 title: "Conversation Recording (Beta)"
 description: "Record a longer dialogue with someone — Sanpou transcribes both sides and stores the audio for later listening."
-firstAddedVersion: "2.0.1"
+firstAddedVersion: "2.1.1"
 lastUpdated: "2026-05-14"
 ---
 
