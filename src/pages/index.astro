@@ -157,6 +157,17 @@ const appStructuredData = {
 				flex: 0 0 190px;
 				margin: 0;
 			}
+			/* JS が動くときだけ隠す。動かなければ最初から見えている */
+			.journey.is-animated .journey-step,
+			.journey.is-animated .journey-cta {
+				opacity: 0;
+				transform: translateY(14px);
+				transition: opacity 0.5s ease, transform 0.5s ease;
+			}
+			.journey.is-animated .is-visible {
+				opacity: 1;
+				transform: none;
+			}
 			.journey-cta {
 				text-align: center;
 				padding-top: 0.5em;
@@ -377,5 +388,27 @@ const appStructuredData = {
 			)}
 		</main>
 		<Footer />
+		<script>
+			// 各段が画面に入ったら軽くフェードインさせる。
+			// 動きを減らす設定のときと JS が動かないときは、そのまま表示する。
+			const journey = document.querySelector('.journey');
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (journey && !reduced) {
+				journey.classList.add('is-animated');
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						}
+					},
+					{ rootMargin: '0px 0px -10% 0px' },
+				);
+				for (const step of journey.querySelectorAll('.journey-step, .journey-cta')) {
+					observer.observe(step);
+				}
+			}
+		</script>
 	</body>
 </html>
