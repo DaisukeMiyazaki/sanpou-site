@@ -3,6 +3,7 @@ title: "Text Recognition (OCR)"
 description: "Photograph a menu, a sign, or a page and pull its text straight into your memo — with a crop step so you read only the part that matters."
 firstAddedVersion: "2.5.0"
 lastUpdated: "2026-07-14"
+screenshot: "ocr"
 ---
 
 Sometimes the fastest way to capture text is to photograph it — a menu, a poster, a page from a book you don't want to retype.

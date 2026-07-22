@@ -3,6 +3,7 @@ title: "Text from Photos"
 description: "Pull text out of a photo you've attached to a memo — signs, menus, book pages — and drop it straight into the memo body."
 firstAddedVersion: "2.5.0"
 lastUpdated: "2026-07-07"
+screenshot: "ocr"
 ---
 
 Not every walk thought arrives as a sentence. Sometimes it's a sign you photographed, a handwritten menu board, or a passage from the book you're reading. Text from Photos (technically, OCR) turns the text in those photos into something you can edit, search, and export with the rest of your memo.

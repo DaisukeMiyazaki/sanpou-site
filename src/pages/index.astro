@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import { APP_STORE_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_TITLE_HOME, buildAppStoreUrl } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
+import Screenshot from '../components/Screenshot.astro';
 
 const base = import.meta.env.BASE_URL;
 
@@ -271,6 +272,7 @@ const appStructuredData = {
 				<a href={buildAppStoreUrl('site-hero')} class="cta-button" target="_blank" rel="noopener noreferrer" data-app-store-link="hero">
 					Download on the App Store
 				</a>
+				<Screenshot name="hero" variant="framed" size="lg" alt="Sanpou turns busy days into captured ideas" />
 			</section>
 
 			{featuredPost && (
@@ -288,16 +290,19 @@ const appStructuredData = {
 					<div class="feature-icon">🎙</div>
 					<h3>Voice Memos</h3>
 					<p>Record thoughts on the go with speech-to-text. Just tap and talk — your voice becomes a memo instantly.</p>
+					<Screenshot name="memo-list" variant="raw" size="sm" alt="Memo list screen" />
 				</div>
 				<div class="feature-card">
 					<div class="feature-icon">📷</div>
 					<h3>Text from Photos</h3>
 					<p>Pull text out of photos attached to a memo. Signs, menus, and book pages become searchable alongside the rest of your memo.</p>
+					<Screenshot name="ocr" variant="raw" size="sm" alt="Text recognition screen" />
 				</div>
 				<div class="feature-card">
 					<div class="feature-icon">🗺</div>
 					<h3>Map View</h3>
 					<p>See all your memos pinned on a map. Filter by time, tap pins for details, and discover patterns in where you go.</p>
+					<Screenshot name="map" variant="raw" size="sm" alt="Map view screen" />
 				</div>
 				<div class="feature-card">
 					<div class="feature-icon">👟</div>

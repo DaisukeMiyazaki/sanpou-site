@@ -3,6 +3,7 @@ title: "Presentation Mode (Beta)"
 description: "Project memo snapshots onto an external display and control them from your phone — for talks, exhibitions, or sharing memories on a TV."
 firstAddedVersion: "2.3.8"
 lastUpdated: "2026-07-03"
+screenshot: "presentations"
 ---
 
 Sometimes a memo isn't just for you. Presentation Mode mirrors curated memo snapshots to an external display (TV, projector, AirPlay), and your phone becomes the remote.

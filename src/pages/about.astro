@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import Screenshot from '../components/Screenshot.astro';
 import { SITE_TITLE, buildAppStoreUrl } from '../consts';
 ---
 
@@ -26,6 +27,16 @@ import { SITE_TITLE, buildAppStoreUrl } from '../consts';
 			.about-section p {
 				color: rgb(var(--gray-dark));
 				line-height: 1.8;
+			}
+			.about-shots {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 1em;
+			}
+			.about-shots > * {
+				flex: 1 1 180px;
+				max-width: 240px;
 			}
 			.cta {
 				display: inline-block;
@@ -55,6 +66,11 @@ import { SITE_TITLE, buildAppStoreUrl } from '../consts';
 					tracks your steps, and visualizes everything on a map. The goal is simple: make it
 					effortless to record your thoughts while walking, so you never lose a good idea.
 				</p>
+				<div class="about-shots">
+					<Screenshot name="memo-list" variant="framed" size="md" alt="Memo list" />
+					<Screenshot name="map" variant="framed" size="md" alt="Map view" />
+					<Screenshot name="presentations" variant="framed" size="md" alt="Presentations" />
+				</div>
 			</div>
 
 			<div class="about-section">

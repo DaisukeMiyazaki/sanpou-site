@@ -3,6 +3,7 @@ title: "Map View"
 description: "See your memos as pins on a map — clustered when they're close, photo-faced when they're attached to images."
 firstAddedVersion: "1.0.0"
 lastUpdated: "2026-05-14"
+screenshot: "map"
 ---
 
 Every memo with a location appears as a pin on the map. The map view lets you wander your past by place rather than by time.
