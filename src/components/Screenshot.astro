@@ -66,14 +66,17 @@ const image = path ? assets[path].default : null;
 		border-radius: 20px;
 		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
 	}
-	/* framed は白背景の合成画像。ダークでも縁が沈まないよう薄い枠を付ける */
+	/* framed は白〜淡グレーの背景が焼き込まれた合成画像。そのまま置くと
+	   ページ背景から矩形が浮くため、乗算合成で背景に溶け込ませる */
 	.screenshot.is-framed :global(img) {
-		border-radius: 12px;
-		border: 1px solid rgba(0, 0, 0, 0.08);
+		mix-blend-mode: multiply;
 	}
+	/* 暗い背景では乗算だと絵が沈むので、素のまま薄い枠で見せる */
 	@media (prefers-color-scheme: dark) {
 		.screenshot.is-framed :global(img) {
-			border-color: rgba(255, 255, 255, 0.12);
+			mix-blend-mode: normal;
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, 0.12);
 		}
 	}
 </style>

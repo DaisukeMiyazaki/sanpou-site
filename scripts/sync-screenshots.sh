@@ -19,9 +19,16 @@ DEST_ROOT="$(cd "$(dirname "$0")/.." && pwd)/src/assets/screenshots"
 LOCALES=("$@")
 [ ${#LOCALES[@]} -eq 0 ] && LOCALES=("en-US")
 
+# hero.png は fastlane のカットではなく web 用に別途生成した透過画像のため、ここでは同期しない。
+# 挿絵を差し替えたときは fastlane ディレクトリで以下を実行して置き換える:
+#   magick -size 1200x1500 xc:none \
+#     \( assets/hero.png -fuzz 4% -transparent white -resize 900x900 \) -gravity center -geometry +0+30 -composite \
+#     -font '/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc' -pointsize 92 -fill '#1D1D1F' -interline-spacing 14 \
+#     -gravity north -annotate +0+50 'Life is busy.\nIdeas slip away fast.' \
+#     -gravity south -annotate +0+70 'Sanpou can help.' hero.png
+#
 # canonical キー -> fastlane のカット名（連番付き）
 KEYS=(
-  "hero:00_Hero"
   "memo-list:01_MemoList"
   "map:03_Map"
   "presentations:04_Presentations"
@@ -46,13 +53,9 @@ for locale in "${LOCALES[@]}"; do
   echo "→ $locale"
   for pair in "${KEYS[@]}"; do
     key="${pair%%:*}"; cut="${pair#*:}"
-    # hero は framed のみ。それ以外は raw と framed の両方を取得
-    if [ "$key" = "hero" ]; then
-      fetch "$SRC/screenshots/$locale/${PREFIX}${cut}_framed.png" "$dest/$key.png" && echo "  $key.png"
-    else
-      fetch "$SRC/screenshots/$locale/${PREFIX}${cut}.png" "$dest/$key.png" && echo "  $key.png"
-      fetch "$SRC/screenshots/$locale/${PREFIX}${cut}_framed.png" "$dest/$key-framed.png" && echo "  $key-framed.png"
-    fi
+    # 素の画面（wiki・機能カード用）と framed（about 用）の両方を取得する
+    fetch "$SRC/screenshots/$locale/${PREFIX}${cut}.png" "$dest/$key.png" && echo "  $key.png"
+    fetch "$SRC/screenshots/$locale/${PREFIX}${cut}_framed.png" "$dest/$key-framed.png" && echo "  $key-framed.png"
   done
 done
 echo "done. review with: git status src/assets/screenshots"
