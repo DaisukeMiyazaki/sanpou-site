@@ -1,0 +1,175 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const base = import.meta.env.BASE_URL;
+const lastUpdated = 'July 2026';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Privacy Policy | ${SITE_TITLE}`}
+			description="How Sanpou handles your data. Nothing leaves your device except where explicitly described here."
+		/>
+		<style>
+			main {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 3em 1em;
+			}
+			.meta {
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+				margin-bottom: 2em;
+			}
+			.lang-switch {
+				float: right;
+				font-size: 0.9em;
+			}
+			section {
+				margin-bottom: 2em;
+			}
+			section h2 {
+				font-size: 1.3em;
+				margin-bottom: 0.4em;
+			}
+			p,
+			li {
+				color: rgb(var(--gray-dark));
+				line-height: 1.8;
+			}
+			ul {
+				padding-left: 1.2em;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<a class="lang-switch" href={`${base}privacy/ja/`}>日本語</a>
+			<h1>Privacy Policy</h1>
+			<p class="meta">Last updated: {lastUpdated}</p>
+
+			<section>
+				<h2>The Short Version</h2>
+				<p>
+					Sanpou has no account system, no advertising, and no analytics. Your memos, photos,
+					videos, audio recordings, and location history live on your device and are not uploaded
+					to any server run by us. The two exceptions — speech recognition on older versions of
+					iOS, and the feedback form — are described below.
+				</p>
+			</section>
+
+			<section>
+				<h2>What Stays on Your Device</h2>
+				<ul>
+					<li>Memo text, and the time each memo was created</li>
+					<li>Photos, videos, and ambient audio attached to a memo</li>
+					<li>The coordinates recorded with a memo, and your home spot</li>
+					<li>Step counts read from Apple HealthKit</li>
+				</ul>
+				<p>
+					None of this is transmitted to a server we operate. It leaves your device only when you
+					yourself export or share it — for example, exporting Markdown to iCloud Drive, or sending
+					a memo through the iOS share sheet.
+				</p>
+			</section>
+
+			<section>
+				<h2>Speech Recognition</h2>
+				<p>
+					On iOS 26 and later, speech is transcribed entirely on your device. On earlier versions of
+					iOS, Sanpou falls back to Apple's speech recognition service, which means the audio is
+					sent to Apple and handled under Apple's privacy policy. We never receive it. This applies
+					to live dictation as well as to transcription of ambient and conversation recordings. The
+					recordings themselves, and the resulting memos, are stored only on your device.
+				</p>
+			</section>
+
+			<section>
+				<h2>Location</h2>
+				<p>
+					When you allow location access, Sanpou records the coordinates of a memo so it can be
+					shown on the map, and so it can tell home from away. These coordinates are stored on your
+					device and are not sent anywhere. You can revoke the permission at any time in iOS
+					Settings; memos still work without it.
+				</p>
+			</section>
+
+			<section>
+				<h2>Health Data</h2>
+				<p>
+					Sanpou reads step counts from HealthKit to show your daily, weekly, monthly, and yearly
+					totals, and to record how far you had walked when a memo was made. Step data is read
+					only, stays on your device, and can be revoked at any time under Settings &gt; Privacy
+					&amp; Security &gt; Health. Sanpou never writes to HealthKit.
+				</p>
+			</section>
+
+			<section>
+				<h2>Photos and Text Recognition</h2>
+				<p>
+					Photos and videos you attach are stored inside the app. When you extract text from a
+					photo, recognition runs on your device through Apple's Vision framework. The image is not
+					uploaded anywhere.
+				</p>
+			</section>
+
+			<section>
+				<h2>Feedback</h2>
+				<p>
+					If you send feedback from within the app, the submission is delivered to a Google Form
+					owned by the developer. It contains the screen you were on, the category you chose, the
+					text you wrote, your app version, your iOS version, and your language setting. It does not
+					include your memos, photos, audio, or location. Sending feedback is always your choice.
+				</p>
+			</section>
+
+			<section>
+				<h2>This Website</h2>
+				<p>
+					sanpou.mdaisuke.net uses Google Analytics to count visits and understand which pages are
+					read. This is the website only — the app contains no analytics of any kind.
+				</p>
+			</section>
+
+			<section>
+				<h2>Third Parties</h2>
+				<p>
+					The app contains no advertising SDKs, no third-party analytics, and no data brokers. There
+					is no account to create and nothing to log in to.
+				</p>
+			</section>
+
+			<section>
+				<h2>Children</h2>
+				<p>
+					Sanpou is not directed at children under 13 and does not knowingly collect information
+					from them. Since no personal data is collected at all, there is nothing for us to hold.
+				</p>
+			</section>
+
+			<section>
+				<h2>Changes</h2>
+				<p>
+					This policy may be updated as the app changes. Any update is reflected in the "Last
+					updated" date above.
+				</p>
+			</section>
+
+			<section>
+				<h2>Contact</h2>
+				<p>
+					Questions about this policy can be sent through the feedback form in the app, or through
+					the App Store listing.
+				</p>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
