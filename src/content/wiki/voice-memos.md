@@ -3,6 +3,7 @@ title: "Voice Memos"
 description: "Tap once and speak — Sanpou transcribes your thoughts on the move and saves the moment along with where and when you said it."
 firstAddedVersion: "1.0.0"
 lastUpdated: "2026-05-14"
+screenshot: "memo-list"
 ---
 
 Voice is the fastest way to catch a thought before it slips away. From the memo tab, tap the record button and start talking — Sanpou transcribes your voice into text on the spot using the system speech recognition framework.

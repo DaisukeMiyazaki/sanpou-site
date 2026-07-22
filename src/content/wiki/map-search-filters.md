@@ -3,6 +3,7 @@ title: "Map Search & Filters"
 description: "Search memos by keyword and narrow the map by time range or weather — answer questions like 'what was I thinking that rainy Sunday?'"
 firstAddedVersion: "1.8.0"
 lastUpdated: "2026-05-14"
+screenshot: "map"
 ---
 
 The map gets more useful as your memo history grows. Filters help you focus.

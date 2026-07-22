@@ -3,6 +3,7 @@ title: "iOS Widgets"
 description: "Start a memo from your home screen or lock screen — voice, text, or photo-first — without opening the app."
 firstAddedVersion: "1.0.0"
 lastUpdated: "2026-05-14"
+screenshot: "lockscreen"
 ---
 
 Sanpou wants to be one tap away. The app ships with several widgets so you can capture a memo before the thought is gone.

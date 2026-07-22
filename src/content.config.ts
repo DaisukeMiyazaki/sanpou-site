@@ -30,6 +30,8 @@ const wiki = defineCollection({
 		description: z.string(),
 		firstAddedVersion: z.string(),
 		lastUpdated: z.coerce.date(),
+		// 機能スクショのキー（Screenshot コンポーネントが解決）。対応カットのあるページのみ設定
+		screenshot: z.string().optional(),
 	}),
 });
 

@@ -3,6 +3,7 @@ title: "Memo Detail"
 description: "Open a memo to see the full transcript, photos, ambient audio, and a sticky audio player that stays accessible while you scroll."
 firstAddedVersion: "1.8.0"
 lastUpdated: "2026-07-07"
+screenshot: "memo-list"
 ---
 
 Tap any memo in the list to open its detail view. You'll see the full transcript with surrounding memos truncated for context, attached photos and videos, ambient audio if it was captured, and metadata like steps and weather.

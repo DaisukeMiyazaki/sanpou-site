@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	/** 機能キー: hero, memo-list, map, presentations, memo-input, ocr, lockscreen */
+	name: string;
+	/** framed = 枠+キャッチコピー付き（マーケ用） / raw = 素の画面 */
+	variant?: 'framed' | 'raw';
+	/** 表示ロケール。当面 en-US のみ実ファイルあり、無い場合は en-US にフォールバック */
+	locale?: string;
+	/** 表示幅の目安 */
+	size?: 'sm' | 'md' | 'lg';
+	alt: string;
+}
+
+const { name, variant = 'raw', locale = 'en-US', size = 'md', alt } = Astro.props;
+
+// 全スクショを事前解決し、キー→ImageMetadata で引けるようにする
+const assets = import.meta.glob<{ default: ImageMetadata }>(
+	'/src/assets/screenshots/**/*.png',
+	{ eager: true },
+);
+
+const suffix = variant === 'framed' ? '-framed' : '';
+// 要求 → raw への退避 → en-US への退避、の順に最初に見つかったものを使う
+const candidates = [
+	`/src/assets/screenshots/${locale}/${name}${suffix}.png`,
+	`/src/assets/screenshots/${locale}/${name}.png`,
+	`/src/assets/screenshots/en-US/${name}${suffix}.png`,
+	`/src/assets/screenshots/en-US/${name}.png`,
+];
+const path = candidates.find((p) => assets[p]);
+const image = path ? assets[path].default : null;
+---
+
+{
+	image && (
+		<figure class:list={['screenshot', `is-${size}`, `is-${variant}`]}>
+			<Image src={image} alt={alt} densities={[1, 2]} loading="lazy" />
+		</figure>
+	)
+}
+
+<style>
+	.screenshot {
+		margin: 1.5em auto;
+		width: 100%;
+	}
+	.screenshot.is-sm {
+		max-width: 190px;
+	}
+	.screenshot.is-md {
+		max-width: 270px;
+	}
+	.screenshot.is-lg {
+		max-width: 340px;
+	}
+	.screenshot :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	/* 素の画面はスマホの画面らしく角丸+影を付ける */
+	.screenshot.is-raw :global(img) {
+		border-radius: 20px;
+		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+	}
+	/* framed は白〜淡グレーの背景が焼き込まれた合成画像。そのまま置くと
+	   ページ背景から矩形が浮くため、乗算合成で背景に溶け込ませる */
+	.screenshot.is-framed :global(img) {
+		mix-blend-mode: multiply;
+	}
+	/* 暗い背景では乗算だと絵が沈むので、素のまま薄い枠で見せる */
+	@media (prefers-color-scheme: dark) {
+		.screenshot.is-framed :global(img) {
+			mix-blend-mode: normal;
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, 0.12);
+		}
+	}
+</style>
