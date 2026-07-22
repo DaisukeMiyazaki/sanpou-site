@@ -123,6 +123,9 @@ const appStructuredData = {
 				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 				gap: 2em;
 				padding: 2em 0 3em;
+				/* スクショ付きカードに合わせて短いカードが引き伸ばされ、
+				   中に大きな余白ができるのを防ぐ */
+				align-items: start;
 			}
 			.feature-card {
 				background: white;
@@ -273,24 +276,9 @@ const appStructuredData = {
 					<Screenshot name="map" variant="raw" size="sm" alt="Map view screen" />
 				</div>
 				<div class="feature-card">
-					<div class="feature-icon">👟</div>
-					<h3>Step Tracking</h3>
-					<p>Your daily steps are recorded automatically via HealthKit. Every memo captures your walking context.</p>
-				</div>
-				<div class="feature-card">
 					<div class="feature-icon">📁</div>
 					<h3>Markdown Export</h3>
 					<p>Export your memos as Markdown files. Integrate seamlessly with Obsidian or any note-taking app.</p>
-				</div>
-				<div class="feature-card">
-					<div class="feature-icon">🏠</div>
-					<h3>Home / Away</h3>
-					<p>Set your home spot and see the ratio of memos recorded at home vs. out and about.</p>
-				</div>
-				<div class="feature-card">
-					<div class="feature-icon">⌚</div>
-					<h3>Apple Watch</h3>
-					<p>Quick memo recording right from your wrist. Perfect for capturing ideas during a walk.</p>
 				</div>
 			</section>
 
