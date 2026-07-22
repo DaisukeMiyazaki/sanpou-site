@@ -66,6 +66,21 @@ const appStructuredData = {
 				text-align: center;
 				padding: 1em 1em 2em;
 			}
+			.story {
+				max-width: 600px;
+				margin: 0 auto;
+				padding: 0 0 1em;
+			}
+			.story p {
+				margin: 0 0 1.1em;
+				color: rgb(var(--gray-dark));
+				line-height: 1.85;
+			}
+			.story .lead {
+				font-size: 1.25em;
+				font-weight: 700;
+				color: rgb(var(--black));
+			}
 			.visually-hidden {
 				position: absolute;
 				width: 1px;
@@ -244,6 +259,23 @@ const appStructuredData = {
 				<!-- 見出しはヒーローカット内のキャッチコピーが担うが、SEO と読み上げのために h1 は残す -->
 				<h1 class="visually-hidden">{SITE_TITLE_HOME}</h1>
 				<Screenshot name="hero" variant="framed" size="lg" alt="Life is busy. Ideas slip away fast. Sanpou can help." />
+			</section>
+
+			<section class="story">
+				<p class="lead">You have so many ideas. You just haven&rsquo;t noticed them yet.</p>
+				<p>
+					Because in 2026, the most precious thing you own is your focus &mdash; and everyone
+					out there is fighting for one more millimeter of it.
+				</p>
+				<p>
+					You don&rsquo;t want to shut yourself off. You want to be here, in this moment. But by
+					the time you look up, the idea is already gone. In 2026, the thoughts you don&rsquo;t
+					want to forget are the ones that weigh on you.
+				</p>
+				<p>
+					All it takes is one tap. Stash it in a second, and come back to now. Nothing left to
+					carry. You&rsquo;re allowed to forget &mdash; being able to forget is happiness.
+				</p>
 			</section>
 
 			{featuredPost && (
