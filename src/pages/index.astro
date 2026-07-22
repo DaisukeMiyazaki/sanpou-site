@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { APP_STORE_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_TITLE_HOME } from '../consts';
+import { APP_STORE_URL, SITE_DESCRIPTION, SITE_TITLE, SITE_TITLE_HOME, buildAppStoreUrl } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 import Screenshot from '../components/Screenshot.astro';
@@ -133,39 +133,68 @@ const appStructuredData = {
 				margin: 0;
 			}
 
-			.features {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			/* メモを取ったあとの体験を上から順に辿らせる。左右交互に置いて単調さを避ける */
+			.journey {
+				padding: 1em 0 2em;
+			}
+			.journey-step {
+				display: flex;
+				align-items: center;
 				gap: 2em;
-				padding: 2em 0 3em;
-				/* スクショ付きカードに合わせて短いカードが引き伸ばされ、
-				   中に大きな余白ができるのを防ぐ */
-				align-items: start;
+				margin-bottom: 3.5em;
 			}
-			.feature-card {
-				background: white;
-				border-radius: 12px;
-				padding: 1.5em;
-				box-shadow: 0 2px 12px rgba(var(--gray), 15%);
-				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			.journey-step:nth-child(even) {
+				flex-direction: row-reverse;
 			}
-			.feature-card:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 4px 20px rgba(var(--gray), 25%);
-			}
-			.feature-icon {
-				font-size: 2em;
-				margin-bottom: 0.3em;
-			}
-			.feature-card h3 {
-				font-size: 1.2em;
-				margin-bottom: 0.3em;
-			}
-			.feature-card p {
-				color: rgb(var(--gray));
-				font-size: 0.9em;
-				line-height: 1.6;
+			.journey-step p {
+				flex: 1;
 				margin: 0;
+				font-size: 1.1em;
+				line-height: 1.85;
+				color: rgb(var(--gray-dark));
+			}
+			.journey-step :global(.screenshot) {
+				flex: 0 0 190px;
+				margin: 0;
+			}
+			/* JS が動くときだけ隠す。動かなければ最初から見えている */
+			.journey.is-animated .journey-step,
+			.journey.is-animated .journey-cta {
+				opacity: 0;
+				transform: translateY(14px);
+				transition: opacity 0.5s ease, transform 0.5s ease;
+			}
+			.journey.is-animated .is-visible {
+				opacity: 1;
+				transform: none;
+			}
+			.journey-cta {
+				text-align: center;
+				padding-top: 0.5em;
+			}
+			.store-cta {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				background: rgb(var(--black));
+				color: white;
+				padding: 0.75em 1.6em;
+				border-radius: 12px;
+				text-decoration: none;
+				font-weight: 700;
+			}
+			.store-cta:hover {
+				color: white;
+				opacity: 0.85;
+			}
+			@media (max-width: 720px) {
+				.journey-step,
+				.journey-step:nth-child(even) {
+					flex-direction: column;
+					gap: 1em;
+					margin-bottom: 2.5em;
+					text-align: center;
+				}
 			}
 
 			.section {
@@ -269,13 +298,52 @@ const appStructuredData = {
 				</p>
 				<p>
 					You don&rsquo;t want to shut yourself off. You want to be here, in this moment. But by
-					the time you look up, the idea is already gone. In 2026, the thoughts you don&rsquo;t
-					want to forget are the ones that weigh on you.
+					the time you look up, the idea is already gone. The thoughts you don&rsquo;t want to
+					forget are the ones weighing on you.
 				</p>
 				<p>
 					All it takes is one tap. Stash it in a second, and come back to now. Nothing left to
 					carry. You&rsquo;re allowed to forget &mdash; being able to forget is happiness.
 				</p>
+				<p>Nothing leaves your device. No ads, no account. One purchase.</p>
+			</section>
+
+			<section class="journey">
+				<div class="journey-step">
+					<Screenshot name="lockscreen" variant="raw" size="sm" alt="Sanpou widget on the lock screen" />
+					<p>One tap from the lock screen &mdash; you&rsquo;re recording before you&rsquo;ve even unlocked your phone.</p>
+				</div>
+				<div class="journey-step">
+					<Screenshot name="memo-input" variant="raw" size="sm" alt="Writing a memo" />
+					<p>Say it out loud, or type it if the street is noisy. Either way, it takes a second.</p>
+				</div>
+				<div class="journey-step">
+					<Screenshot name="memo-list" variant="raw" size="sm" alt="Memos saved with time, place and steps" />
+					<p>It&rsquo;s kept with everything around it: the time, the place, the steps you had already walked.</p>
+				</div>
+				<div class="journey-step">
+					<Screenshot name="map" variant="raw" size="sm" alt="Memos pinned on a map" />
+					<p>Weeks later, your ideas have a geography. You start to see where your thinking actually happens.</p>
+				</div>
+				<div class="journey-step">
+					<Screenshot name="ocr" variant="raw" size="sm" alt="Reading text from a photo" />
+					<p>Words on a sign, a menu, a page &mdash; they come along too, straight into the memo.</p>
+				</div>
+				<div class="journey-step">
+					<Screenshot name="presentations" variant="raw" size="sm" alt="A walk replayed as a slideshow" />
+					<p>A walk comes back to you as a slideshow. You remember the day, not just the note.</p>
+				</div>
+				<div class="journey-step">
+					<p>And none of it is locked in. Send it to Obsidian, Notion, or plain Markdown &mdash; it was always yours.</p>
+				</div>
+				<div class="journey-cta">
+					<a href={buildAppStoreUrl('site-story')} class="store-cta" target="_blank" rel="noopener noreferrer" data-app-store-link="story">
+						<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22">
+							<path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+						</svg>
+						Download on the App Store
+					</a>
+				</div>
 			</section>
 
 			{featuredPost && (
@@ -287,32 +355,6 @@ const appStructuredData = {
 					</a>
 				</section>
 			)}
-
-			<section class="features">
-				<div class="feature-card">
-					<div class="feature-icon">🎙</div>
-					<h3>Voice Memos</h3>
-					<p>Record thoughts on the go with speech-to-text. Just tap and talk — your voice becomes a memo instantly.</p>
-					<Screenshot name="memo-list" variant="raw" size="sm" alt="Memo list screen" />
-				</div>
-				<div class="feature-card">
-					<div class="feature-icon">📷</div>
-					<h3>Text from Photos</h3>
-					<p>Pull text out of photos attached to a memo. Signs, menus, and book pages become searchable alongside the rest of your memo.</p>
-					<Screenshot name="ocr" variant="raw" size="sm" alt="Text recognition screen" />
-				</div>
-				<div class="feature-card">
-					<div class="feature-icon">🗺</div>
-					<h3>Map View</h3>
-					<p>See all your memos pinned on a map. Filter by time, tap pins for details, and discover patterns in where you go.</p>
-					<Screenshot name="map" variant="raw" size="sm" alt="Map view screen" />
-				</div>
-				<div class="feature-card">
-					<div class="feature-icon">📁</div>
-					<h3>Markdown Export</h3>
-					<p>Export your memos as Markdown files. Integrate seamlessly with Obsidian or any note-taking app.</p>
-				</div>
-			</section>
 
 			{latestRelease && (
 				<section class="section">
@@ -347,5 +389,27 @@ const appStructuredData = {
 			)}
 		</main>
 		<Footer />
+		<script>
+			// 各段が画面に入ったら軽くフェードインさせる。
+			// 動きを減らす設定のときと JS が動かないときは、そのまま表示する。
+			const journey = document.querySelector('.journey');
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (journey && !reduced) {
+				journey.classList.add('is-animated');
+				const observer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						}
+					},
+					{ rootMargin: '0px 0px -10% 0px' },
+				);
+				for (const step of journey.querySelectorAll('.journey-step, .journey-cta')) {
+					observer.observe(step);
+				}
+			}
+		</script>
 	</body>
 </html>
